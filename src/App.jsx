@@ -6,11 +6,13 @@ function App() {
 	const URL =
 		'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
 	const { data, isLoading, hasError } = useAxios(URL);
-	console.log(data, isLoading, hasError);
+
 	return (
-		<div className='flex'>
+		<div
+			className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
+    mt-10'>
 			<Image />
-			<Form />
+			<Form data={data} />
 		</div>
 	);
 }
