@@ -1,4 +1,5 @@
-function Form() {
+function Form({ data, isLoading }) {
+	console.log(data);
 	return (
 		<div className='w-3/6 max-sm:w-full max-w-xs'>
 			<h1 className='font-bold text-3xl text-white mb-5 text-center border-sky-600 border-b-2'>
@@ -14,10 +15,14 @@ function Form() {
 						name='currency'
 						id='currency'>
 						<optgroup>
-							<option value='dolar'>Dolar</option>
-							<option value='peso-uruguayo'>Peso Uruguayo</option>
-							<option value='euro'>Euro</option>
-							<option value='real'>Real</option>
+							{!isLoading &&
+								data.map((element) => {
+									return (
+										<option key={element.CoinInfo.Id} value='dolar'>
+											${element.CoinInfo.FullName}
+										</option>
+									);
+								})}
 						</optgroup>
 					</select>
 				</div>

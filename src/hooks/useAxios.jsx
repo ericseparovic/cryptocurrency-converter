@@ -11,7 +11,7 @@ export const useAxios = (URL) => {
 	const getData = async () => {
 		try {
 			const response = await axios.get(URL);
-			const data = await response.data;
+			const data = await response.data.Data;
 
 			setState({
 				data,
