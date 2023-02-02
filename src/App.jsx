@@ -4,15 +4,17 @@ import { useAxios } from './hooks/useAxios';
 import { useForm } from './hooks/useForm';
 
 function App() {
-	const URL =
-		'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
-	const { data, isLoading } = useAxios(URL);
 	const { formState, onInputChange } = useForm({
 		currency: '',
 		crypto: '',
 	});
 
 	const { currency, crypto } = formState;
+
+	const URL =
+		'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
+
+	const { data, isLoading } = useAxios(URL);
 
 	return (
 		<div
