@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 export const useAxios = (URL) => {
 	const [state, setState] = useState({
-		data: [],
+		data: {},
 		isLoading: true,
 		hasError: null,
 	});
@@ -11,7 +11,7 @@ export const useAxios = (URL) => {
 	const getData = async () => {
 		try {
 			const response = await axios.get(URL);
-			const data = await response.data.Data;
+			const data = await response.data;
 
 			setState({
 				data,

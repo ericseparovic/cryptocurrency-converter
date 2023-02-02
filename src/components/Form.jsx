@@ -1,5 +1,8 @@
-function Form({ data, isLoading }) {
-	console.log(data);
+import PropTypes from 'prop-types';
+
+function Form({ data, isLoading, onInputChange }) {
+	const { Data } = data;
+
 	return (
 		<div className='w-3/6 max-sm:w-full max-w-xs'>
 			<h1 className='font-bold text-3xl text-white mb-5 text-center border-sky-600 border-b-2'>
@@ -13,16 +16,14 @@ function Form({ data, isLoading }) {
 					<select
 						className='rounded p-2 cursor-pointer'
 						name='currency'
-						id='currency'>
+						id='currency'
+						onChange={onInputChange}>
 						<optgroup>
-							{!isLoading &&
-								data.map((element) => {
-									return (
-										<option key={element.CoinInfo.Id} value='dolar'>
-											${element.CoinInfo.FullName}
-										</option>
-									);
-								})}
+							<option value='' defaultChecked>
+								--Select--
+							</option>
+							<option value='USD'>Dolar</option>
+							<option value='EUR'>Euro</option>
 						</optgroup>
 					</select>
 				</div>
@@ -32,23 +33,38 @@ function Form({ data, isLoading }) {
 					</label>
 					<select
 						className='rounded p-2 cursor-pointer'
-						name='currency'
-						id='currency'>
+						name='crypto'
+						id='crypto'
+						onChange={onInputChange}>
 						<optgroup>
-							<option value='dolar'>Dolar</option>
-							<option value='peso-uruguayo'>Peso Uruguayo</option>
-							<option value='euro'>Euro</option>
-							<option value='real'>Real</option>
+							<option value='' defaultChecked>
+								--Select--
+							</option>
+							{!isLoading &&
+								Data.map((data) => {
+									return (
+										<option key={data.CoinInfo.Id} value={data.CoinInfo.Name}>
+											{data.CoinInfo.FullName}
+										</option>
+									);
+								})}
 						</optgroup>
 					</select>
 				</div>
 				<input
 					type='submit'
+					value='Calc'
 					className='bg-sky-600 rounded text-white p-2 font-bold hover:bg-sky-500 cursor-pointer'
 				/>
 			</form>
 		</div>
 	);
 }
+
+Form.propTypes = {
+	data: PropTypes.object.isRequired,
+	isLoading: PropTypes.bool.isRequired,
+	onInputChange: PropTypes.func.isRequired,
+};
 
 export default Form;
