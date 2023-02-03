@@ -1,10 +1,15 @@
 import Image from './components/Image';
 import Form from './components/Form';
+import Modal from './components/Modal';
 import { useGetCtypos } from './hooks/useGetCtypos';
 import { useGetQuiote } from './hooks/useGetQuiote';
 import { useForm } from './hooks/useForm';
+import { useState } from 'react';
 
 function App() {
+	const [result, setResult] = useState({});
+	const [modal, setModal] = useState(false);
+
 	// Get data form
 	const { formState, onInputChange } = useForm({
 		currency: '',
@@ -29,22 +34,30 @@ function App() {
 	// Get quiote
 	const onFromSubmit = (e) => {
 		e.preventDefault();
-
-		console.log(quiote, isLoadingQuiote);
+		setResult(quiote.DISPLAY[crypto][currency]);
+		setModal(true);
 	};
 
 	return (
-		<div
-			className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
+		<>
+			{modal && (
+				<div className='bg-slate-500 h-screen w-screen fixed top-0 opacity-80'></div>
+			)}
+
+			<div
+				className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
     mt-10'>
-			<Image />
-			<Form
-				data={data}
-				isLoading={isLoading}
-				onInputChange={onInputChange}
-				onFromSubmit={onFromSubmit}
-			/>
-		</div>
+				<Image />
+
+				<Form
+					data={data}
+					isLoading={isLoading}
+					onInputChange={onInputChange}
+					onFromSubmit={onFromSubmit}
+				/>
+				<Modal result={result} />
+			</div>
+		</>
 	);
 }
 
