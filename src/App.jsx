@@ -18,7 +18,7 @@ function App() {
 
 	// API Cryptos
 	const URLCRYPTOS =
-		'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
+		'https://min-api.cryptoompare.com/data/top/mktcapfull?limit=10&tsym=USD';
 
 	// Get data api cryptos
 	const { data, isLoading } = useGetCtypos(URLCRYPTOS);
@@ -38,27 +38,37 @@ function App() {
 		setModal(true);
 	};
 
-	return (
-		<>
-			{modal && (
-				<div className='bg-slate-500 h-screen w-screen fixed top-0 opacity-80'></div>
-			)}
-
-			<div
-				className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
-    mt-10'>
-				<Image />
-
-				<Form
-					data={data}
-					isLoading={isLoading}
-					onInputChange={onInputChange}
-					onFromSubmit={onFromSubmit}
-				/>
-				<Modal result={result} />
+	if (isLoading) {
+		return (
+			<div className='spinner fixed top-32 right-0 left-0'>
+				<div className='bounce1'></div>
+				<div className='bounce2'></div>
+				<div className='bounce3'></div>
 			</div>
-		</>
-	);
+		);
+	} else {
+		return (
+			<>
+				{modal && (
+					<div className='bg-slate-500 h-screen w-screen fixed top-0 opacity-80'></div>
+				)}
+
+				<div
+					className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
+    mt-10'>
+					<Image />
+
+					<Form
+						data={data}
+						isLoading={isLoading}
+						onInputChange={onInputChange}
+						onFromSubmit={onFromSubmit}
+					/>
+					<Modal result={result} setModal={setModal} modal={modal} />
+				</div>
+			</>
+		);
+	}
 }
 
 export default App;
