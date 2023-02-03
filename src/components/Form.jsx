@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function Form({ data, isLoading, onInputChange }) {
+function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 	const { Data } = data;
 
 	return (
@@ -8,7 +8,7 @@ function Form({ data, isLoading, onInputChange }) {
 			<h1 className='font-bold text-3xl text-white mb-5 text-center border-sky-600 border-b-2'>
 				Cryptocurrency Converte
 			</h1>
-			<form action='' className='flex flex-col gap-10'>
+			<form action='' className='flex flex-col gap-10' onSubmit={onFromSubmit}>
 				<div className='flex flex-col'>
 					<label className='text-white text-xl font-bold' htmlFor='currency'>
 						Select Currency
@@ -65,6 +65,7 @@ Form.propTypes = {
 	data: PropTypes.object.isRequired,
 	isLoading: PropTypes.bool.isRequired,
 	onInputChange: PropTypes.func.isRequired,
+	onFromSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;

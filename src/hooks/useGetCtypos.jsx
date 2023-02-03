@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-export const useAxios = (URL) => {
+export const useGetCtypos = (URL) => {
 	const [state, setState] = useState({
 		data: {},
 		isLoading: true,
