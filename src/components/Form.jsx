@@ -24,6 +24,8 @@ function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 							</option>
 							<option value='USD'>Dolar</option>
 							<option value='EUR'>Euro</option>
+							<option value='UYU'>Peso Uruguayo</option>
+							<option value='BRL'>Real</option>
 						</optgroup>
 					</select>
 				</div>
