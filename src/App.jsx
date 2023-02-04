@@ -18,7 +18,7 @@ function App() {
 
 	// API Cryptos
 	const URLCRYPTOS =
-		'https://min-api.cryptoompare.com/data/top/mktcapfull?limit=10&tsym=USD';
+		'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
 
 	// Get data api cryptos
 	const { data, isLoading } = useGetCtypos(URLCRYPTOS);
@@ -29,7 +29,7 @@ function App() {
 	const URLQUIOTE = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${currency}`;
 
 	// Get data quiote
-	const { quiote, isLoadingQuiote } = useGetQuiote(URLQUIOTE);
+	const { quiote } = useGetQuiote(URLQUIOTE);
 
 	// Get quiote
 	const onFromSubmit = (e) => {
@@ -40,7 +40,7 @@ function App() {
 
 	if (isLoading) {
 		return (
-			<div className='spinner fixed top-32 right-0 left-0'>
+			<div className='spinner fixed top-28 right-0 left-0'>
 				<div className='bounce1'></div>
 				<div className='bounce2'></div>
 				<div className='bounce3'></div>
@@ -64,7 +64,12 @@ function App() {
 						onInputChange={onInputChange}
 						onFromSubmit={onFromSubmit}
 					/>
-					<Modal result={result} setModal={setModal} modal={modal} />
+					<Modal
+						result={result}
+						setModal={setModal}
+						modal={modal}
+						crypto={crypto}
+					/>
 				</div>
 			</>
 		);

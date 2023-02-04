@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import btnClose from '../assets/close.png';
 
-function Modal({ result, setModal, modal }) {
-	const { CHANGEPCT24HOUR, HIGHDAY, LASTUPDATE, LOWDAY, PRICE, IMAGEURL } =
-		result;
+function Modal({ result, setModal, modal, crypto }) {
+	const { CHANGEPCT24HOUR, HIGHDAY, LASTUPDATE, LOWDAY, PRICE } = result;
 
 	const handleClose = () => {
 		setModal(false);
@@ -18,7 +17,7 @@ function Modal({ result, setModal, modal }) {
 							Result
 						</h1>
 
-						<div className='flex'>
+						<div className='flex items-center'>
 							<div
 								className='absolute w-6 top-3 right-3 cursor-pointer'
 								onClick={handleClose}>
@@ -26,24 +25,29 @@ function Modal({ result, setModal, modal }) {
 							</div>
 							<div className='leading-loose'>
 								<p className='font-bold'>
-									Price: <span>{PRICE}</span>
+									Price: <span className='font-light'>{PRICE}</span>
 									{''}
 								</p>
+
 								<p className='font-bold'>
-									Price High Day: <span>{HIGHDAY}</span>{' '}
+									Price High Day: <span className='font-light'>{HIGHDAY}</span>{' '}
 								</p>
 								<p className='font-bold'>
-									Price Low Day: <span>{LOWDAY}</span>{' '}
+									Price Low Day: <span className='font-light'>{LOWDAY}</span>{' '}
 								</p>
 								<p className='font-bold'>
-									Change 24 Hour: <span>{CHANGEPCT24HOUR}</span>{' '}
+									Change 24 Hour:{' '}
+									<span className='font-light'>{CHANGEPCT24HOUR}</span>{' '}
 								</p>
 								<p className='font-bold'>
-									Last Update: <span>{LASTUPDATE}</span>{' '}
+									Last Update: <span className='font-light'>{LASTUPDATE}</span>{' '}
 								</p>
 							</div>
 							<picture className='w-28 p-3'>
-								<img src={`https://cryptocompare.com/${IMAGEURL}`} alt='icon' />
+								<img
+									src={`src/assets/${crypto.toLowerCase()}.png`}
+									alt='icon'
+								/>
 							</picture>
 						</div>
 					</div>
@@ -57,6 +61,7 @@ Modal.propTypes = {
 	result: PropTypes.object.isRequired,
 	setModal: PropTypes.func.isRequired,
 	modal: PropTypes.bool.isRequired,
+	crypto: PropTypes.string.isRequired,
 };
 
 export default Modal;
