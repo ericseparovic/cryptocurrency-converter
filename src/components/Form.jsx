@@ -53,6 +53,7 @@ function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 						</optgroup>
 					</select>
 				</div>
+
 				<input
 					type='submit'
 					value='Calc'

@@ -1,6 +1,8 @@
 import Image from './components/Image';
 import Form from './components/Form';
 import Modal from './components/Modal';
+import Spinner from './components/Spinner';
+import Error from './components/Error';
 import { useGetCtypos } from './hooks/useGetCtypos';
 import { useGetQuiote } from './hooks/useGetQuiote';
 import { useForm } from './hooks/useForm';
@@ -9,6 +11,7 @@ import { useState } from 'react';
 function App() {
 	const [result, setResult] = useState({});
 	const [modal, setModal] = useState(false);
+	const [error, setError] = useState(false);
 
 	// Get data form
 	const { formState, onInputChange } = useForm({
@@ -34,25 +37,30 @@ function App() {
 	// Get quiote
 	const onFromSubmit = (e) => {
 		e.preventDefault();
+
+		if (Object.entries(quiote).length === 0) {
+			setError(true);
+			return;
+		}
+
+		if (quiote.Response === 'Error') {
+			setError(true);
+			return;
+		}
 		setResult(quiote.DISPLAY[crypto][currency]);
 		setModal(true);
+		setError(false);
 	};
 
 	if (isLoading) {
-		return (
-			<div className='spinner fixed top-28 right-0 left-0'>
-				<div className='bounce1'></div>
-				<div className='bounce2'></div>
-				<div className='bounce3'></div>
-			</div>
-		);
+		return <Spinner />;
 	} else {
 		return (
 			<>
 				{modal && (
 					<div className='bg-slate-500 h-screen w-screen fixed top-0 opacity-80'></div>
 				)}
-
+				{error && <Error />}
 				<div
 					className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
     mt-10'>
