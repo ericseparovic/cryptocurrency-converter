@@ -1,3 +1,3 @@
 # cryptocurrency convert
 
-![Preview challenge](./src/assets/Crypto-Convert.png)
+![Preview challenge](./assets/Crypto-Convert.png)
