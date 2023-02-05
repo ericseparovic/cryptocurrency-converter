@@ -59,8 +59,8 @@ function App() {
 			setError(true);
 			return;
 		}
-		setModal(true);
 		setError(false);
+		setModal(true);
 	};
 
 	if (isLoading) {
@@ -68,7 +68,7 @@ function App() {
 	} else {
 		return (
 			<>
-				{modal && (
+				{modal && result && (
 					<div className='bg-slate-500 h-screen w-screen fixed top-0 opacity-80'></div>
 				)}
 				{error && <Error />}
@@ -83,12 +83,14 @@ function App() {
 						onInputChange={onInputChange}
 						onFromSubmit={onFromSubmit}
 					/>
-					<Modal
-						result={result}
-						setModal={setModal}
-						modal={modal}
-						crypto={crypto}
-					/>
+					{result && (
+						<Modal
+							result={result}
+							setModal={setModal}
+							modal={modal}
+							crypto={crypto}
+						/>
+					)}
 				</div>
 			</>
 		);

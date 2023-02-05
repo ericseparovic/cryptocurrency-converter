@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import Button from './Button';
+import Select from './Select';
+import { getCurrency } from '../hooks/getCurrency';
 
 function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 	const { Data } = data;
+	const currency = getCurrency();
 
 	return (
 		<div className='w-3/6 max-sm:w-full max-w-xs'>
@@ -10,50 +13,21 @@ function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 				Cryptocurrency Converte
 			</h1>
 			<form action='' className='flex flex-col gap-10' onSubmit={onFromSubmit}>
-				<div className='flex flex-col'>
-					<label className='text-white text-xl font-bold' htmlFor='currency'>
-						Select Currency
-					</label>
-					<select
-						className='rounded p-2 cursor-pointer'
-						name='currency'
-						id='currency'
-						onChange={onInputChange}>
-						<optgroup>
-							<option value='' defaultChecked>
-								--Select--
-							</option>
-							<option value='USD'>Dolar</option>
-							<option value='EUR'>Euro</option>
-							<option value='UYU'>Peso Uruguayo</option>
-							<option value='BRL'>Real</option>
-						</optgroup>
-					</select>
-				</div>
-				<div className='flex flex-col'>
-					<label className='text-white text-xl font-bold' htmlFor='currency'>
-						Select Currency
-					</label>
-					<select
-						className='rounded p-2 cursor-pointer'
-						name='crypto'
-						id='crypto'
-						onChange={onInputChange}>
-						<optgroup>
-							<option value='' defaultChecked>
-								--Select--
-							</option>
-							{!isLoading &&
-								Data.map((data) => {
-									return (
-										<option key={data.CoinInfo.Id} value={data.CoinInfo.Name}>
-											{data.CoinInfo.FullName}
-										</option>
-									);
-								})}
-						</optgroup>
-					</select>
-				</div>
+				<Select
+					label='Select Currency'
+					onInputChange={onInputChange}
+					Data={currency}
+					isLoading={isLoading}
+					name='currency'
+				/>
+
+				<Select
+					label='Select Crypto'
+					onInputChange={onInputChange}
+					Data={Data}
+					isLoading={isLoading}
+					name='crypto'
+				/>
 
 				<Button />
 			</form>
