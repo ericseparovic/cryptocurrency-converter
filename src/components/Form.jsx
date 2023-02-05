@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 	const { Data } = data;
@@ -54,11 +55,7 @@ function Form({ data, isLoading, onInputChange, onFromSubmit }) {
 					</select>
 				</div>
 
-				<input
-					type='submit'
-					value='Calc'
-					className='bg-sky-600 rounded text-white p-2 font-bold hover:bg-sky-500 cursor-pointer'
-				/>
+				<Button />
 			</form>
 		</div>
 	);
