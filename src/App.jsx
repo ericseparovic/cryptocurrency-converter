@@ -73,8 +73,8 @@ function App() {
 				)}
 				{error && <Error />}
 				<div
-					className='container mx-auto flex justify-between items-center h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
-    mt-10'>
+					className='container mx-auto flex justify-between items-center  h-screen max-w-2xl gap-4 max-sm:flex-col max-sm:h-full max-sm:px-5 max-sm:
+    '>
 					<Image />
 
 					<Form
