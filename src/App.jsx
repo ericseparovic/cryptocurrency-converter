@@ -82,7 +82,6 @@ function App() {
 						setModal={setModal}
 						modal={modal}
 						crypto={crypto}
-						setError={setError}
 					/>
 				</div>
 			</>
