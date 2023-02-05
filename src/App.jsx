@@ -47,7 +47,12 @@ function App() {
 			setError(true);
 			return;
 		}
+
 		setResult(quiote.DISPLAY[crypto][currency]);
+
+		if (result === undefined) {
+			setError(true);
+		}
 		setModal(true);
 		setError(false);
 	};
@@ -77,6 +82,7 @@ function App() {
 						setModal={setModal}
 						modal={modal}
 						crypto={crypto}
+						setError={setError}
 					/>
 				</div>
 			</>

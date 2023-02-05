@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import btnClose from '../assets/close.png';
 
-function Modal({ result, setModal, modal, crypto }) {
+function Modal({ result, setModal, modal, crypto, setError }) {
 	const { CHANGEPCT24HOUR, HIGHDAY, LASTUPDATE, LOWDAY, PRICE } = result;
 
 	const handleClose = () => {
@@ -62,6 +62,7 @@ Modal.propTypes = {
 	setModal: PropTypes.func.isRequired,
 	modal: PropTypes.bool.isRequired,
 	crypto: PropTypes.string.isRequired,
+	setError: PropTypes.func.isRequired,
 };
 
 export default Modal;
