@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import btnClose from '../assets/close.png';
 
 function Modal({ result, setModal, modal, crypto }) {
-	const { CHANGEPCT24HOUR, HIGHDAY, LASTUPDATE, LOWDAY, PRICE } = result;
+	const { CHANGEPCT24HOUR, HIGHDAY, LASTUPDATE, LOWDAY, PRICE, IMAGEURL } =
+		result;
 
 	const handleClose = () => {
 		setModal(false);
@@ -44,10 +45,7 @@ function Modal({ result, setModal, modal, crypto }) {
 								</p>
 							</div>
 							<picture className='w-28 p-3'>
-								<img
-									src={`src/assets/${crypto.toLowerCase()}.png`}
-									alt='icon'
-								/>
+								<img src={`https://cryptocompare.com/${IMAGEURL}`} alt='icon' />
 							</picture>
 						</div>
 					</div>
