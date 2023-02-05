@@ -48,10 +48,16 @@ function App() {
 			return;
 		}
 
-		setResult(quiote.DISPLAY[crypto][currency]);
+		try {
+			setResult(quiote.DISPLAY[crypto][currency]);
+		} catch {
+			setError(true);
+			return;
+		}
 
 		if (result === undefined) {
 			setError(true);
+			return;
 		}
 		setModal(true);
 		setError(false);
